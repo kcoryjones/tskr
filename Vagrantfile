@@ -24,6 +24,24 @@ cat > /etc/nginx/sites-enabled/site <<'EOL'
 
         try_files $uri $uri/ /index.html =404;
     }
+
+    server {
+        listen 80;
+        server_name api.tskr.dev;
+        root /var/www/api/app;
+
+        location / {
+            index index.php index.html index.htm;
+            try_files $uri /index.php?$query_string;
+        }
+
+        location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+        }
+    }
 EOL
 
     # restart nginx
@@ -32,6 +50,9 @@ EOL
 ALWAYS
 
 $once = <<ONCE
+
+    # add repo for php-7
+    add-apt-repository ppa:ondrej/php
 
     # update and upgrade
     apt-get update
@@ -43,6 +64,9 @@ $once = <<ONCE
     # nginx tweaks - sendfile off, remove default server block
     sed -i "s/sendfile on/sendfile off/g" /etc/nginx/nginx.conf
     rm /etc/nginx/sites-enabled/default
+
+    # install php7 fpm
+    apt-get install -y php7.0-fpm
 ONCE
 
 Vagrant.configure(2) do |config|
