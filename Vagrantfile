@@ -15,6 +15,15 @@ cat > /etc/nginx/sites-enabled/site <<'EOL'
 
         try_files $uri $uri/ /index.html =404;
     }
+
+    server {
+        listen 80;
+        server_name cdn.tskr.dev;
+        root /var/www/cdn;
+        index index.html index.htm;
+
+        try_files $uri $uri/ /index.html =404;
+    }
 EOL
 
     # restart nginx
