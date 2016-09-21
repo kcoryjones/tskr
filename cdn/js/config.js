@@ -1,5 +1,5 @@
 System.config({
-  baseURL: "/",
+  baseURL: "http://cdn.tskr.dev/js/",
   defaultJSExtensions: true,
   transpiler: "babel",
   babelOptions: {
