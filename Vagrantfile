@@ -23,6 +23,33 @@ cat > /etc/nginx/sites-enabled/site <<'EOL'
         index index.html index.htm;
 
         try_files $uri $uri/ /index.html =404;
+
+        # enable CORS
+        location / {
+            if ($request_method = 'OPTIONS') {
+                add_header 'Access-Control-Allow-Origin' '*';
+                add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+
+                # Custom headers and headers various browsers *should* be OK with but aren't
+                add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+
+                # Tell client that this pre-flight info is valid for 20 days
+                add_header 'Access-Control-Max-Age' 1728000;
+                add_header 'Content-Type' 'text/plain charset=UTF-8';
+                add_header 'Content-Length' 0;
+                return 204;
+            }
+            if ($request_method = 'POST') {
+                add_header 'Access-Control-Allow-Origin' '*';
+                add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+            }
+            if ($request_method = 'GET') {
+                add_header 'Access-Control-Allow-Origin' '*';
+                add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+            }
+        }
     }
 
     server {
@@ -47,6 +74,9 @@ EOL
     # restart nginx
     service nginx restart
 
+    # update jspm packages
+    cd /var/www/cdn/js && jspm install
+
 ALWAYS
 
 $once = <<ONCE
@@ -67,6 +97,18 @@ $once = <<ONCE
 
     # install php7 fpm
     apt-get install -y php7.0-fpm
+
+    # install node and npm
+    curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -
+    apt-get install -y nodejs
+
+    # install zip and git
+    apt-get install -y zip
+    apt-get install -y git
+
+    # install jspm globally
+    npm install -g jspm@0.16
+
 ONCE
 
 Vagrant.configure(2) do |config|
