@@ -47,6 +47,9 @@ EOL
     # restart nginx
     service nginx restart
 
+    # update jspm packages
+    cd /var/www/cdn/js && jspm install
+
 ALWAYS
 
 $once = <<ONCE
@@ -67,6 +70,18 @@ $once = <<ONCE
 
     # install php7 fpm
     apt-get install -y php7.0-fpm
+
+    # install node and npm
+    curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -
+    apt-get install -y nodejs
+
+    # install zip and git
+    apt-get install -y zip
+    apt-get install -y git
+
+    # install jspm globally
+    npm install -g jspm@0.16
+
 ONCE
 
 Vagrant.configure(2) do |config|
