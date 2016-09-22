@@ -1,5 +1,5 @@
 System.config({
-  baseURL: "http://cdn.tskr.dev/js/",
+  baseURL: "/",
   defaultJSExtensions: true,
   transpiler: "babel",
   babelOptions: {
@@ -14,9 +14,15 @@ System.config({
   },
 
   map: {
+    "angular": "github:angular/bower-angular@1.5.8",
+    "angular-ui-router": "github:angular-ui/angular-ui-router-bower@0.3.1",
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "core-js": "npm:core-js@1.2.7",
+    "text": "github:systemjs/plugin-text@0.0.9",
+    "github:angular-ui/angular-ui-router-bower@0.3.1": {
+      "angular": "github:angular/bower-angular@1.5.8"
+    },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
     },
