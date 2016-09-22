@@ -20,6 +20,8 @@ System.config({
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "core-js": "npm:core-js@1.2.7",
+    "css": "github:systemjs/plugin-css@0.1.27",
+    "purecss": "npm:purecss@0.6.0",
     "scss": "github:mobilexag/plugin-sass@0.4.6",
     "text": "github:systemjs/plugin-text@0.0.9",
     "github:angular-ui/angular-ui-router-bower@0.3.1": {
@@ -299,6 +301,9 @@ System.config({
     },
     "npm:punycode@1.3.2": {
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:purecss@0.6.0": {
+      "css": "github:systemjs/plugin-css@0.1.27"
     },
     "npm:randombytes@2.0.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",

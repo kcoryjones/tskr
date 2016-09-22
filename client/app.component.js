@@ -1,5 +1,6 @@
 import template from './app.html!text';
-import css from './app.scss!';
+import 'purecss/build/pure.css!';
+import './app.scss!';
 
 let appComponent = ()=> {
 	return {
