@@ -15,22 +15,13 @@ System.config({
 
   map: {
     "angular": "github:angular/bower-angular@1.5.8",
+    "angular-css": "npm:angular-css@1.0.8",
     "angular-ui-router": "github:angular-ui/angular-ui-router-bower@0.3.1",
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "core-js": "npm:core-js@1.2.7",
-    "scss": "github:KevCJones/plugin-scss@0.2.11",
+    "scss": "github:mobilexag/plugin-sass@0.4.6",
     "text": "github:systemjs/plugin-text@0.0.9",
-    "github:KevCJones/plugin-scss@0.2.11": {
-      "autoprefixer": "npm:autoprefixer@6.4.1",
-      "fs": "github:jspm/nodelibs-fs@0.1.2",
-      "lodash": "npm:lodash@4.16.1",
-      "path": "github:jspm/nodelibs-path@0.1.0",
-      "postcss": "npm:postcss@5.2.0",
-      "reqwest": "github:ded/reqwest@2.0.5",
-      "sass.js": "npm:sass.js@0.9.12",
-      "url": "github:jspm/nodelibs-url@0.1.0"
-    },
     "github:angular-ui/angular-ui-router-bower@0.3.1": {
       "angular": "github:angular/bower-angular@1.5.8"
     },
@@ -69,6 +60,16 @@ System.config({
     },
     "github:jspm/nodelibs-vm@0.1.0": {
       "vm-browserify": "npm:vm-browserify@0.0.4"
+    },
+    "github:mobilexag/plugin-sass@0.4.6": {
+      "autoprefixer": "npm:autoprefixer@6.4.1",
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "lodash": "npm:lodash@4.16.1",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "postcss": "npm:postcss@5.2.0",
+      "reqwest": "github:ded/reqwest@2.0.5",
+      "sass.js": "npm:sass.js@0.9.12",
+      "url": "github:jspm/nodelibs-url@0.1.0"
     },
     "npm:asn1.js@4.8.1": {
       "bn.js": "npm:bn.js@4.11.6",

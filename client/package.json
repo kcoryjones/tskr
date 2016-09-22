@@ -2,8 +2,9 @@
   "jspm": {
     "dependencies": {
       "angular": "github:angular/bower-angular@^1.5.8",
+      "angular-css": "npm:angular-css@^1.0.8",
       "angular-ui-router": "github:angular-ui/angular-ui-router-bower@^0.3.1",
-      "scss": "github:KevCJones/plugin-scss@^0.2.11",
+      "scss": "github:mobilexag/plugin-sass@^0.4.6",
       "text": "github:systemjs/plugin-text@^0.0.9"
     },
     "devDependencies": {
