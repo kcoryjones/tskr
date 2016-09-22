@@ -7,6 +7,9 @@ let appModule = angular.module('app', [
 	'ui.router',
 	Components.name
 ])
+.config(($locationProvider) => {
+	$locationProvider.html5Mode(true);
+})
 .directive('app', AppComponent);
 
 // manually bootstrap
