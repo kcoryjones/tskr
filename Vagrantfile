@@ -39,7 +39,7 @@ EOL
     service nginx restart
 
     # update jspm packages
-    cd /var/www/client/js && jspm install
+    cd /var/www/client && jspm install
 
 ALWAYS
 
