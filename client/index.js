@@ -1,11 +1,11 @@
 import angular from 'angular';
 import 'angular-ui-router';
 import AppComponent from './app.component';
-//import Components from './components/components';
+import Components from './components/components';
 
 let appModule = angular.module('app', [
 	'ui.router',
-	//Components.name
+	Components.name
 ])
 .directive('app', AppComponent);
 
