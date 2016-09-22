@@ -7,7 +7,9 @@ let taskComponent = function(){
 		controller,
 		restrict: 'E',
 		controllerAs: 'vm',
-		scope: {},
+		scope: {
+			task: '='
+		},
 		bindToController: true
 	};
 };

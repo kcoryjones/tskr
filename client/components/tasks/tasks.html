@@ -1,4 +1,8 @@
-<div>
-	<h1>Tasks</h1>
-	<task></task>
+<div class="pure-g">
+	<div class="pure-u-1-1">
+		<h1>Tasks</h1>
+	</div>
+	<div class="pure-u-1-1" ng-repeat="task in vm.tasks">
+		<task task="task"></task>
+	</div>
 </div>
