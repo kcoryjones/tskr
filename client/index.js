@@ -1,20 +1,27 @@
 import angular from 'angular';
 import 'angular-ui-router';
+import 'angular-css';
 import AppComponent from './app.component';
-//import Components from './components/components';
+import Components from './components/components';
+import Services from './services/services';
 
 let appModule = angular.module('app', [
 	'ui.router',
-	//Components.name
+	'angularCSS',
+	Components.name,
+	Services.name
 ])
+.config(($locationProvider) => {
+	$locationProvider.html5Mode(true);
+})
 .directive('app', AppComponent);
 
 // manually bootstrap
-var container = document.createElement('div');
+let container = document.createElement('div');
 container.id ='app-container';
-var appNode = document.createElement('app');
+let appNode = document.createElement('app');
 container.appendChild(appNode);
-var noAngularDOM = container.cloneNode(true);
+let noAngularDOM = container.cloneNode(true);
 
 document.body.appendChild(container);
 

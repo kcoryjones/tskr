@@ -1,0 +1,17 @@
+<div class="pure-g">
+	<div class="pure-u-1-1">
+		<h1 class="main-title">TSKR</h1>
+		<hr class="main-hr">
+		<h2 class="sub-title" ng-if="vm.taskService.tasks.length">Looks like you have some tasks today!</h2>
+		<h2 class="sub-title" ng-if="!vm.taskService.tasks.length">Get started by adding a task!</h2>
+	</div>
+	<div class="pure-u-1-1" ng-repeat="task in vm.taskService.tasks">
+		<task task="task" editing="vm.taskService.editing==task.id"></task>
+	</div>
+	<div class="pure-u-1-1">
+		<button class="pure-button pure-button-primary btn-big btn-right btn-bottom" ng-disabled="vm.taskService.editing" ng-click="vm.addTask()">
+			<i class="fa fa-plus"></i>
+			Add A Task
+		</button>
+	</div>
+</div>
