@@ -1,9 +1,26 @@
 html {
 	
 	background-image: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/paper.png');
+	color: #444;
+	text-shadow: #aaa 0 2px 3px;
 
 	body {
+		
 		max-width: 960px;
 		margin: auto;
+
+		.pure-button {
+			box-shadow: #aaa 0 2px 3px;
+		}
+
+		.btn-big {
+			font-size: 1.25em;
+		}
+
+		.btn-right {
+			float: right;
+		}
+
 	}
+
 }

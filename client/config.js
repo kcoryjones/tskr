@@ -21,6 +21,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "core-js": "npm:core-js@1.2.7",
     "css": "github:systemjs/plugin-css@0.1.27",
+    "font-awesome": "npm:font-awesome@4.6.3",
     "purecss": "npm:purecss@0.6.0",
     "scss": "github:mobilexag/plugin-sass@0.4.6",
     "text": "github:systemjs/plugin-text@0.0.9",
@@ -241,6 +242,9 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "create-hash": "npm:create-hash@1.1.2",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0"
+    },
+    "npm:font-awesome@4.6.3": {
+      "css": "github:systemjs/plugin-css@0.1.27"
     },
     "npm:has-flag@1.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.2"

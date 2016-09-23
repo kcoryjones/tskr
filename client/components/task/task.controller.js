@@ -1,5 +1,5 @@
 class TaskController {
-	constructor(){
+	constructor() {
 		this.name = 'task';
 	}
 }

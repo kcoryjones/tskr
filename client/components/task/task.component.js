@@ -1,5 +1,6 @@
 import controller from './task.controller';
 import template from './task.html!text';
+import './task.scss!';
 
 let taskComponent = function(){
 	return {
@@ -8,7 +9,7 @@ let taskComponent = function(){
 		restrict: 'E',
 		controllerAs: 'vm',
 		scope: {
-			task: '='
+			task: '<'
 		},
 		bindToController: true
 	};
