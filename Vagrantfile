@@ -73,6 +73,14 @@ $once = <<ONCE
     # install jspm globally
     npm install -g jspm@0.16
 
+    # install mysql server and php7 mysql
+    debconf-set-selections <<< 'mysql-server mysql-server/root_password password tskrdev'
+    debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password tskrdev'
+    apt-get install -y mysql-server php7.0-mysq
+
+    # create database schema
+    mysql --host=localhost --user=root --password=tskrdev < /var/www/api/schema/schema.sql
+
 ONCE
 
 Vagrant.configure(2) do |config|
