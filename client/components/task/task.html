@@ -1,6 +1,20 @@
-<div class="task-item">
+<div class="task-item" ng-if="!vm.editing">
 	<span>{{vm.task.label}}</span>
-	<button class="pure-button btn-right" title="Edit Task">
+	<button class="pure-button btn-error btn-right" title="Delete Task" ng-disabled="vm.taskService.editing" ng-click="vm.delete()">
+		<i class="fa fa-close"></i>
+	</button>
+	<button class="pure-button btn-right" title="Edit Task" ng-disabled="vm.taskService.editing" ng-click="vm.edit()">
 		<i class="fa fa-pencil"></i>
+	</button>
+</div>
+<div class="task-item" ng-if="vm.editing">
+	<span>
+		<input type="text" name="input" ng-model="vm.newLabel" placeholder="Enter Task">
+	</span>
+	<button class="pure-button btn-error btn-right" title="Delete Task" ng-click="vm.delete()">
+		<i class="fa fa-close"></i>
+	</button>
+	<button class="pure-button btn-success btn-right" title="Save Task" ng-disabled="!vm.newLabel.length" ng-click="vm.save()">
+		<i class="fa fa-check"></i>
 	</button>
 </div>

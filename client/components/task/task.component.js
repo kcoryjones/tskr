@@ -9,7 +9,8 @@ let taskComponent = function(){
 		restrict: 'E',
 		controllerAs: 'vm',
 		scope: {
-			task: '<'
+			task: '<',
+			editing: '<'
 		},
 		bindToController: true
 	};
