@@ -4,11 +4,12 @@ class TaskService {
 
 	constructor($http, $q) {
 		this.name = "task";
-		this.apiUrl = 'http://api.tskr.dev';
+		this.apiUrl = 'http://api.tskr.dev/rest';
 		this.$http = $http;
 		this.$q = $q;
 		this.tasks = [];
 		this.editing = null;
+		this.defautlTaskLabel = 'New Task';
 	}
 
 	edit(id) {
@@ -18,19 +19,16 @@ class TaskService {
 	get() {
 		let $that = this;
 		let deferred = this.$q.defer();
-		//this.$http.get(this.apiUrl + '/tasks').then((response) => {
-			// MOCKUP
-			if (!$that.tasks.length) {
-				$that.tasks = [
-					{id:1,label:'Task One, eh'},
-					{id:2,label:'Task Two, hoser'}
-				]
+		this.$http.get(this.apiUrl + '/task', {withCredentials:true}).then((response) => {
+			if (response.data.meta.success) {
+				$that.tasks = response.data.rows;
+				deferred.resolve();
+			} else {
+				deferred.reject();
 			}
-			// MOCKUP
-			deferred.resolve();
-		//}, (err) => {
-			//deferred.reject(err);
-		//});
+		}, (err) => {
+			deferred.reject(err);
+		});
 
 		return deferred.promise;
 	}
@@ -38,20 +36,20 @@ class TaskService {
 	add() {
 		let $that = this;
 		let deferred = this.$q.defer();
-		//this.$http.post(this.apiUrl + '/tasks', {label:null}).then((response) => {
-			this.get().then((response) => {
-				// MOCKUP
-				let id = Math.floor(Math.random()*(500-2)+2);
-				$that.tasks.push({id,label:''});
-				$that.edit(id);
-				// MOCKUP
-				deferred.resolve();
-			}, (err) => {
-				deferred.reject(err);
-			});
-		//}, (err) => {
-			//deferred.reject(err);
-		//});
+		this.$http.post(this.apiUrl + '/task', {label:this.defautlTaskLabel}, {withCredentials:true}).then((response) => {
+			if (response.data.meta.success) {
+				this.get().then(() => {
+					$that.edit(response.data.meta.id);
+					deferred.resolve();
+				}, (err) => {
+					deferred.reject(err);
+				});
+			} else {
+				deferred.reject();
+			}
+		}, (err) => {
+			deferred.reject(err);
+		});
 
 		return deferred.promise;
 	}
@@ -59,23 +57,20 @@ class TaskService {
 	update(task) {
 		let $that = this;
 		let deferred = this.$q.defer();
-		//this.$http.post(this.apiUrl + '/tasks', task).then((response) => {
-			this.get().then((response) => {
-				// MOCKUP
-				angular.forEach(this.tasks, function(value, key) {
-					if (value.id == task.id) {
-						$that.tasks[key] = task;
-						$that.edit(null);
-					}
+		this.$http.put(this.apiUrl + '/task/'+task.id, task, {withCredentials:true}).then((response) => {
+			if (response.data.meta.success) {
+				this.get().then(() => {
+					$that.edit(null);
+					deferred.resolve();
+				}, (err) => {
+					deferred.reject(err);
 				});
-				// MOCKUP
-				deferred.resolve();
-			}, (err) => {
-				deferred.reject(err);
-			});
-		//}, (err) => {
-			//deferred.reject(err);
-		//});
+			} else {
+				deferred.reject();
+			}
+		}, (err) => {
+			deferred.reject(err);
+		});
 
 		return deferred.promise;
 	}
@@ -83,23 +78,20 @@ class TaskService {
 	delete(id) {
 		let $that = this;
 		let deferred = this.$q.defer();
-		//this.$http.delete(this.apiUrl + '/tasks/'+id).then((response) => {
-			this.get().then((response) => {
-				// MOCKUP
-				angular.forEach(this.tasks, function(value, key) {
-					if (value.id == id) {
-						$that.tasks.splice(key, 1);
-						$that.edit(null);
-					}
+		this.$http.delete(this.apiUrl + '/task/'+id, {withCredentials:true}).then((response) => {
+			if (response.data.meta.success) {
+				this.get().then(() => {
+					$that.edit(null);
+					deferred.resolve();
+				}, (err) => {
+					deferred.reject(err);
 				});
-				// MOCKUP
-				deferred.resolve();
-			}, (err) => {
-				deferred.reject(err);
-			});
-		//}, (err) => {
-			//deferred.reject(err);
-		//});
+			} else {
+				deferred.reject();
+			}
+		}, (err) => {
+			deferred.reject(err);
+		});
 
 		return deferred.promise;
 	}

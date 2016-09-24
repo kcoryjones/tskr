@@ -73,12 +73,20 @@ $once = <<ONCE
     # install jspm globally
     npm install -g jspm@0.16
 
+    # install mysql server and php7 mysql
+    debconf-set-selections <<< 'mysql-server mysql-server/root_password password tskrdev'
+    debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password tskrdev'
+    apt-get install -y mysql-server php7.0-mysql
+
+    # create database schema
+    mysql --host=localhost --user=root --password=tskrdev < /var/www/api/schema/schema.sql
+
 ONCE
 
 Vagrant.configure(2) do |config|
     config.vm.box = "ubuntu/trusty64"
     config.vm.network "private_network", ip: $IP
-    config.vm.synced_folder ".", "/var/www"
+    config.vm.synced_folder ".", "/var/www", :owner => "vagrant", :group => "www-data", :mount_options => ["dmode=775,fmode=764"]
     config.vm.provider "virtualbox" do |vb|
         vb.memory = $MEM
     end

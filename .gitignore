@@ -1,2 +1,4 @@
 .vagrant/
 client/jspm_packages
+api/tmp/*
+api/tmp/cache/*
