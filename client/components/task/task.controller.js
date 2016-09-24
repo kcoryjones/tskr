@@ -2,7 +2,7 @@ class TaskController {
 	constructor(taskService) {
 		this.name = 'task';
 		this.taskService = taskService;
-		this.newLabel = '';
+		this.newLabel = this.task.label;
 	}
 
 	edit() {
